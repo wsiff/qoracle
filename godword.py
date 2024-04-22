@@ -51,6 +51,6 @@ def GodSays():
         return output
     else:
         #print("Error: Failed to fetch verse from API")\
-        output = "Something went wrong. I have logged the problem."
+        output = "Something went wrong. Logged the problem."
         return 
     
