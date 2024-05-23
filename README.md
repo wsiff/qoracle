@@ -1,5 +1,5 @@
 # Q-Oracle Discord Bot
-Discord bot that selects a verse from the Quran, as random as possible.
+Discord bot that selects a verse from the Quran, randomness based on HotBits random number generator
 
 
 # How to Use
