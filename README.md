@@ -73,7 +73,7 @@ Ensure the following dependencies are installed (defined in `requirements.txt`):
 ---
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the DWYW License. Go figure.
 
 ---
 
