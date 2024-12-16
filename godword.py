@@ -8,14 +8,43 @@ TOKEN = os.getenv('HOTBITS_TOKEN')
 
 # Hotbits API endpoint
 url = "https://www.fourmilab.ch/cgi-bin/Hotbits.api"
-
+url2 = "https://bible-api.com/?random=verse"
+#url3 = "https://www.sefaria.org/api/texts/random"
 # API key for Hotbits
 api_key = TOKEN
 
 # Number of random bytes to request
 num_bytes = 2
+"""
+def TorahSays():
+    headers = {"accept": "application/json"}
+    response = requests.get(url3, headers=headers)
+    print(response.text)
+"""
+def BibleSays():
+    # Send a GET request to the URL
+    response = requests.get(url2)
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Parse the JSON response
+        data = response.json()
 
+        # Extract the verse details from the JSON
+        verse_data = data.get("verses", [{}])[0]  # Get the first verse from the list
 
+        # Extract the relevant fields
+        book_name = verse_data.get('book_name', 'Unknown Book')
+        chapter_number = verse_data.get('chapter', 'Unknown Chapter')
+        verse_number = verse_data.get('verse', 'Unknown Verse')
+        verse_text = verse_data.get('text', 'No text available')
+
+        # Format the output as per the required style
+        output = f"Book: {book_name} | Chapter {chapter_number}: Verse {verse_number}\n{verse_text}"
+
+        # Print the formatted output
+        return output
+    else:
+        print("Failed to fetch data from the API.")
 
 def GodSays(): 
     # Request random bytes from Hotbits API
@@ -47,10 +76,10 @@ def GodSays():
         chapter_name = response2.json()["data"]["surah"]["englishName"]
         chapter_name_eng = response2.json()["data"]["surah"]["englishNameTranslation"]
 
-        output = "Surah " + str(chapter_number) + " | " + chapter_name +  " | " + chapter_name_eng + ": Verse " + str(verse_number) + " -> " + verse
+        output = "Surah " + str(chapter_number) + " | " + chapter_name +  " | " + chapter_name_eng + ": Verse " + str(verse_number) + "\n" + verse
         return output
     else:
         #print("Error: Failed to fetch verse from API")\
-        output = "Something went wrong. Logged the problem."
+        output = "Something went wrong. I have logged the problem."
         return 
     
