@@ -1,4 +1,4 @@
-# QOracle Discord Bot - Script ONLY
+# QOracle Discord Bot - stripped version
 
 This is the script only version for bot that selects a verses from the big three Holy Books i.e. Bible, Quran, Torah, leveraging quantum-level randomness; using unpredictable decay of radioactive isotopes.
 
