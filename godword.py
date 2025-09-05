@@ -9,18 +9,13 @@ TOKEN = os.getenv('HOTBITS_TOKEN')
 # Hotbits API endpoint
 url = "https://www.fourmilab.ch/cgi-bin/Hotbits.api"
 url2 = "https://bible-api.com/?random=verse"
-#url3 = "https://www.sefaria.org/api/texts/random"
+
 # API key for Hotbits
 api_key = TOKEN
 
 # Number of random bytes to request
 num_bytes = 2
-"""
-def TorahSays():
-    headers = {"accept": "application/json"}
-    response = requests.get(url3, headers=headers)
-    print(response.text)
-"""
+
 def BibleSays():
     # Send a GET request to the URL
     response = requests.get(url2)
@@ -114,4 +109,5 @@ def TorahSays():
     output = f"Book {book} | Chapter {chapter_number}: Verse {verse_number}\n{verse}"
     #print(output)
     return output
+
 
