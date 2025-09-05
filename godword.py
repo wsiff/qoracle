@@ -83,3 +83,35 @@ def GodSays():
         output = "Something went wrong. I have logged the problem."
         return 
     
+def TorahSays():
+    torah = {
+            "Genesis": [31,25,24,26,32,22,24,22,29,32,32,20,18,24,21,16,27,33,38,18,34,24,20,67,34,35,46,22,35,43,55,32,20,31,29,43,36,30,23,23,57,38,34,34,28,34,31,22,33,26],
+            "Exodus": [22,25,22,31,23,30,25,32,35,29,10,51,22,31,27,36,16,27,25,26,36,31,33,18,40,37,21,43,46,38,18,35,23,35,35,38,29,31,43,38],
+            "Leviticus": [17,16,17,35,19,30,38,36,24,20,47,8,59,57,33,34,16,30,37,27,24,33,44,23,55,46,34],
+            "Numbers": [54,34,51,49,31,27,89,26,23,36,35,16,33,45,41,50,13,32,22,29,35,41,30,25,18,65,23,31,40,16,54,42,56,29,34,13],
+            "Deuteronomy": [46,37,29,49,33,25,26,20,29,22,32,32,18,29,23,22,20,22,21,20,23,30,25,22,19,19,26,69,28,20,30,52,29,12]
+        }
+
+    # Randomly pick book, chapter, verse
+    book = random.choice(list(torah.keys()))
+    chapter_number = random.randint(1, len(torah[book]))
+    verse_number = random.randint(1, torah[book][chapter_number - 1])
+
+    # Query Sefaria API
+    ref = f"{book}.{chapter_number}.{verse_number}"
+    url = f"https://www.sefaria.org/api/texts/{ref}?context=0"
+    response = requests.get(url)
+
+    # Check response status
+    if response.status_code != 200:  # <-- single line status check
+        return f"Error: API request failed with status {response.status_code}"
+
+    data = response.json()
+    verse = data["text"]
+    #print(url)
+
+    # Format output like your Quran program
+    output = f"Book {book} | Chapter {chapter_number}: Verse {verse_number}\n{verse}"
+    #print(output)
+    return output
+
